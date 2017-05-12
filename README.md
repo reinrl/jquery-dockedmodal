@@ -28,70 +28,70 @@ _(You'll obviously need to include jQuery as well)._
 
 #### Method 1: Automatically attaching to links
 
-The simplest approach is to add `rel="modal:open"` to your links and use the `href` attribute to specify what to open in the modal.
+The simplest approach is to add `rel="dockedmodal:open"` to your links and use the `href` attribute to specify what to open in the modal.
 
 Open an existing DOM element by ID:
 
 ```html
-<form id="login-form" class="modal">
+<form id="login-form" class="dockedmodal">
   ...
 </form>
 
-<a href="#login-form" rel="modal:open">Login</a>
+<a href="#login-form" rel="dockedmodal:open">Login</a>
 ```
 
 Load a remote URL with AJAX:
 
 ```html
-<a href="login.html" rel="modal:open">Login</a>
+<a href="login.html" rel="dockedmodal:open">Login</a>
 ```
 
 #### Method 2: Manually
 
-You can manually open a modal by calling the `.modal()` method on the element:
+You can manually open a modal by calling the `.dockedmodal()` method on the element:
 
 ```html
-<form id="login-form" class="modal">
+<form id="login-form" class="dockedmodal">
   ...
 </form>
 ```
 
 ```js
-$('#login-form').modal();
+$('#login-form').dockedmodal();
 ```
 
-You can also invoke `.modal()` directly on links:
+You can also invoke `.dockedmodal()` directly on links:
 
 ```html
-<a href="#ex5" data-modal>Open a DOM element</a>
-<a href="ajax.html" data-modal>Open an AJAX modal</a>
+<a href="#ex5" data-dockedmodal>Open a DOM element</a>
+<a href="ajax.html" data-dockedmodal>Open an AJAX modal</a>
 ```
 
 ```js
-$('a[data-modal]').click(function(event) {
-  $(this).modal();
+$('a[data-dockedmodal]').click(function(event) {
+  $(this).dockedmodal();
   return false;
 });
 ```
 
 ### Compatibility Fallback
 
-You can provide a clean fallback for users who have JavaScript disabled by manually attaching the modal via the `data-modal` attribute. This allows you to write your links pointing to the `href` as normal (fallback) while enabling modals where JavaScript is enabled.
+You can provide a clean fallback for users who have JavaScript disabled by manually attaching the modal via the `data-dockedmodal` attribute. This allows you to write your links pointing to the `href` as normal (fallback) while enabling modals where JavaScript is enabled.
 
 ```html
 <!-- By default link takes user to /login.html -->
-<a href="/login.html" data-modal="#login-modal">Login</a>
+<a href="/login.html" data-dockedmodal="#login-modal">Login</a>
 
 <!-- Login modal embedded in page -->
-<div id="login-modal" class="modal">
+<div id="login-modal" class="dockedmodal">
   ...
 </div>
 
 <!-- For browsers with JavaScript, open the modal. -->
 <script>
   $(function() {
-    $('a[data-modal]').on('click', function() {
-      $($(this).data('modal')).modal();
+    $('a[data-dockedmodal]').on('click', function() {
+      $($(this).data('modal')).dockedmodal();
       return false;
     });
   });
@@ -103,8 +103,8 @@ You can provide a clean fallback for users who have JavaScript disabled by manua
 By default the overlay & window appear instantaneously, but you can enable a fade effect by specifying the `fadeDuration` option.
 
 ```js
-$('a.open-modal').click(function(event) {
-  $(this).modal({
+$('a.open-dockedmodal').click(function(event) {
+  $(this).dockedmodal({
     fadeDuration: 250
   });
   return false;
@@ -116,7 +116,7 @@ This will fade in the overlay and modal over 250 milliseconds _simultaneously._ 
 So if you wanted the window to fade in when the overlay's was 80% finished:
 
 ```js
-$(elm).modal({
+$(elm).dockedmodal({
   fadeDuration: 250,
   fadeDelay: 0.80
 });
@@ -125,7 +125,7 @@ $(elm).modal({
 Or, if you wanted the window to fade in a few moments after the overlay transition has completely finished:
 
 ```js
-$(elm).modal({
+$(elm).dockedmodal({
   fadeDuration: 250,
   fadeDelay: 1.5
 });
@@ -140,35 +140,35 @@ Fading is the only supported transition.
 Because there can be only one modal active at a single time, there's no need to select which modal to close:
 
 ```js
-$.modal.close();
+$.dockedmodal.close();
 ```
 
-Similar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="modal:close"`:
+Similar to how links can be automatically bound to open modals, they can be bound to close modals using `rel="dockedmodal:close"`:
 
 ```html
-<a href="#close" rel="modal:close">Close window</a>
+<a href="#close" rel="dockedmodal:close">Close window</a>
 ```
 
 _(Note that modals loaded with AJAX are removed from the DOM when closed)._
 
 # Checking current state
 
-* Use `$.modal.isActive()` to check if a modal is currently being displayed.
-* Use `$.modal.getCurrent()` to retrieve a reference to the currently active modal instance, if any.
+* Use `$.dockedmodal.isActive()` to check if a modal is currently being displayed.
+* Use `$.dockedmodal.getCurrent()` to retrieve a reference to the currently active modal instance, if any.
 
 # Options
 
 These are the supported options and their default values:
 
 ```js
-$.modal.defaults = {
+$.dockedmodal.defaults = {
   closeExisting: true,    // Close existing modals. Set this to false if you need to stack multiple modal instances.
   escapeClose: true,      // Allows the user to close the modal by pressing `ESC`
   clickClose: true,       // Allows the user to close the modal by clicking the overlay
   closeText: 'Close',     // Text content for the close <a> tag.
   closeClass: '',         // Add additional class(es) to the close <a> tag.
   showClose: true,        // Shows a (X) icon/link in the top-right corner
-  modalClass: "modal",    // CSS class added to the element being displayed in the modal.
+  modalClass: "dockedmodal",    // CSS class added to the element being displayed in the modal.
   spinnerHtml: null,      // HTML appended to the default spinner during AJAX requests.
   showSpinner: true,      // Enable/disable the default spinner during AJAX requests.
   fadeDuration: null,     // Number of milliseconds the fade transition takes (null means no transition)
@@ -181,27 +181,27 @@ $.modal.defaults = {
 The following events are triggered on the modal element at various points in the open/close cycle (see below for AJAX events).
 
 ```javascript
-$.modal.BEFORE_BLOCK = 'modal:before-block';    // Fires just before the overlay (blocker) appears.
-$.modal.BLOCK = 'modal:block';                  // Fires after the overlay (block) is visible.
-$.modal.BEFORE_OPEN = 'modal:before-open';      // Fires just before the modal opens.
-$.modal.OPEN = 'modal:open';                    // Fires after the modal has finished opening.
-$.modal.BEFORE_CLOSE = 'modal:before-close';    // Fires when the modal has been requested to close.
-$.modal.CLOSE = 'modal:close';                  // Fires when the modal begins closing (including animations).
-$.modal.AFTER_CLOSE = 'modal:after-close';      // Fires after the modal has fully closed (including animations).
+$.dockedmodal.BEFORE_BLOCK = 'dockedmodal:before-block';    // Fires just before the overlay (blocker) appears.
+$.dockedmodal.BLOCK = 'dockedmodal:block';                  // Fires after the overlay (block) is visible.
+$.dockedmodal.BEFORE_OPEN = 'dockedmodal:before-open';      // Fires just before the modal opens.
+$.dockedmodal.OPEN = 'dockedmodal:open';                    // Fires after the modal has finished opening.
+$.dockedmodal.BEFORE_CLOSE = 'dockedmodal:before-close';    // Fires when the modal has been requested to close.
+$.dockedmodal.CLOSE = 'dockedmodal:close';                  // Fires when the modal begins closing (including animations).
+$.dockedmodal.AFTER_CLOSE = 'dockedmodal:after-close';      // Fires after the modal has fully closed (including animations).
 ```
 
 The first and only argument passed to these event handlers is the `modal` object, which has three properties:
 
 ```js
-modal.$elm;       // Original jQuery object upon which modal() was invoked.
-modal.options;    // Options passed to the modal.
-modal.$blocker;   // The overlay element.
+dockedmodal.$elm;       // Original jQuery object upon which modal() was invoked.
+dockedmodal.options;    // Options passed to the modal.
+dockedmodal.$blocker;   // The overlay element.
 ```
 
 So, you could do something like this:
 
 ```js
-$('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
+$('#purchase-form').on($.dockedmodal.BEFORE_CLOSE, function(event, modal) {
   clear_shopping_cart();
 });
 ```
@@ -210,7 +210,7 @@ $('#purchase-form').on($.modal.BEFORE_CLOSE, function(event, modal) {
 
 ## Basic support
 
-jQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you've included modal.css) and will have the class `modal-spinner`. If you've set the `modalClass` option, the spinner will be prefixed with that class name instead.
+jQuery Modal uses $.get for basic AJAX support. A simple spinner will be displayed by default (if you've included dockedmodal.css) and will have the class `dockedmodal-spinner`. If you've set the `modalClass` option, the spinner will be prefixed with that class name instead.
 
 You can add text or additional HTML to the spinner with the `spinnerHtml` option, or disable the spinner entirely by setting `showSpinner: false`.
 
@@ -219,35 +219,35 @@ You can add text or additional HTML to the spinner with the `spinnerHtml` option
 The following events are triggered when AJAX modals are requested.
 
 ```js
-$.modal.AJAX_SEND = 'modal:ajax:send';
-$.modal.AJAX_SUCCESS = 'modal:ajax:success';
-$.modal.AJAX_FAIL = 'modal:ajax:fail';
-$.modal.AJAX_COMPLETE = 'modal:ajax:complete';
+$.dockedmodal.AJAX_SEND = 'dockedmodal:ajax:send';
+$.dockedmodal.AJAX_SUCCESS = 'dockedmodal:ajax:success';
+$.dockedmodal.AJAX_FAIL = 'dockedmodal:ajax:fail';
+$.dockedmodal.AJAX_COMPLETE = 'dockedmodal:ajax:complete';
 ```
 
 The handlers receive no arguments. The events are triggered on the `<a>` element which initiated the AJAX modal.
 
 ## More advanced AJAX handling
 
-It's a good idea to provide more robust AJAX handling -- error handling, in particular. Instead of accommodating the myriad [`$.ajax` options](http://api.jquery.com/jQuery.ajax/) jQuery provides, jquery-modal makes it possible to directly modify the AJAX request itself.
+It's a good idea to provide more robust AJAX handling -- error handling, in particular. Instead of accommodating the myriad [`$.ajax` options](http://api.jquery.com/jQuery.ajax/) jQuery provides, jquery-dockedmodal makes it possible to directly modify the AJAX request itself.
 
-Simply bypass the default AJAX handling (i.e.: don't use `rel="modal"`)
+Simply bypass the default AJAX handling (i.e.: don't use `rel="dockedmodal"`)
 
 ```html
-<a href="ajax.html" rel="ajax:modal">Click me!</a>
+<a href="ajax.html" rel="ajax:dockedmodal">Click me!</a>
 ```
 
 and make your AJAX request in the link's click handler. Note that you need to manually append the new HTML/modal in the `success` callback:
 
 ```js
-$('a[rel="ajax:modal"]').click(function(event) {
+$('a[rel="ajax:dockedmodal"]').click(function(event) {
 
   $.ajax({
 
     url: $(this).attr('href'),
 
     success: function(newHTML, textStatus, jqXHR) {
-      $(newHTML).appendTo('body').modal();
+      $(newHTML).appendTo('body').dockedmodal();
     },
 
     error: function(jqXHR, textStatus, errorThrown) {
@@ -262,7 +262,7 @@ $('a[rel="ajax:modal"]').click(function(event) {
 });
 ```
 
-Note that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.
+Note that the AJAX response must be wrapped in a div with class <code>dockedmodal</code> when using the second (manual) method.
 
 # Support
 
