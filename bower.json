@@ -1,19 +1,21 @@
 {
-  "name": "jquery-modal",
+  "name": "jquery-dockedmodal",
   "main": [
-    "jquery.modal.js",
-    "jquery.modal.css",
+    "jquery.dockedmodal.js",
+    "jquery.dockedmodal.css",
     "close.png",
     "spinner.gif"
   ],
-  "homepage": "https://github.com/kylefox/jquery-modal",
+  "homepage": "https://github.com/reinrl/jquery-dockedmodal",
   "authors": [
-    "Kyle Fox <kyle.fox@gmail.com>"
+    "Rich Rein <reinrl@gmail.com>"
   ],
-  "description": "A lightweight and easy to use modal plugin for jQuery.",
+  "description": "A lightweight and easy to use docked modal plugin for jQuery.",
   "keywords": [
     "jquery",
-    "modal"
+    "modal",
+    "docked",
+    "docked-modal"
   ],
   "dependencies": {
     "jquery": "1.8.0 - 3.1.x"
