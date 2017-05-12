@@ -1,6 +1,4 @@
-A simple & lightweight method of displaying modal windows with jQuery.
-
-For quick examples and demos, head to [jquerymodal.com](http://jquerymodal.com/).
+A simple & lightweight method of displaying docked (visually tied to an element) modal windows with jQuery.
 
 # Why another modal plugin?
 
@@ -15,28 +13,16 @@ and does so with as little HTML & CSS as possible.
 
 # Installation
 
-You can install [jquery-modal](https://www.npmjs.com/package/jquery-modal) with npm:
-
-`npm install jquery-modal`
-
-or with [Bower](http://bower.io/):
-
-`bower install jquery-modal`
-
-or the good old fashioned way of including the scripts & styles manually:
+Use it the good old fashioned way of including the scripts & styles manually:
 
 ```html
-<script src="jquery.modal.min.js" type="text/javascript" charset="utf-8"></script>
-<link rel="stylesheet" href="jquery.modal.css" type="text/css" media="screen" />
+<script src="jquery.dockedmodal.js" type="text/javascript" charset="utf-8"></script>
+<link rel="stylesheet" href="jquery.dockedmodal.css" type="text/css" media="screen" />
 ```
 
 _(You'll obviously need to include jQuery as well)._
 
-**Using Rails?** Check out the [jquery-modal-rails plugin](https://github.com/dei79/jquery-modal-rails)!
-
-**jQuery Requirements:** As of version 0.3.0, jQuery 1.7 is required. If you're using an earlier version of jQuery you can use the [v.0.2.5 tag.](https://github.com/kylefox/jquery-modal/tags)
-
-**Naming conflict with Bootstrap:** Bootstrap's [modal](http://getbootstrap.com/javascript/#modals) uses the same `$.modal` namespace. If you want to use jquery-modal with Bootstrap, the simplest solution is to manually modify the name of this plugin.
+**jQuery Requirements:** jQuery 1.7 is required.
 
 # Opening
 
@@ -278,56 +264,13 @@ $('a[rel="ajax:modal"]').click(function(event) {
 
 Note that the AJAX response must be wrapped in a div with class <code>modal</code> when using the second (manual) method.
 
-# Bugs & Feature Requests
-
-### Found a bug? MEH!
-
-![](http://drops.kylefox.ca/1cqGP+)
-
-**Just kidding.** Please [create an issue](https://github.com/kylefox/jquery-modal/issues/new) and **include a publicly-accessible demonstration of the bug.** [Dropbox](https://www.dropbox.com) or [JSFiddle](http://jsfiddle.net/) work well for demonstrating reproducable bugs, but you can use anything as long as it's publicly accessible. Your issue is much more likely to be resolved/merged if it includes a fix & pull request.
-
-**Have an idea that improves jquery-modal?** Awesome! Please fork this repository, implement your idea (including documentation, if necessary), and submit a pull request.
-
-I don't use this library as frequently as I used to, so if you want to see a fix/improvement you're best off submitting a pull request. Bugs without a test case and/or improvements without a pull request will be shown no mercy and closed!
-
-# Contributing
-
-## Maintainers Wanted
-
-![](https://img.shields.io/badge/maintainers-wanted-red.svg)
-
-This library became more popular and active than I ever expected, and unfortunately I don't have time to maintain it myself.
-
-If you are interested in helping me maintain this library, please let me know — **I would love your help!**
-
-[**Read more about becoming a maintainer &raquo;**](https://github.com/kylefox/jquery-modal/issues/170)
-
-_I'd especially like people who would be excited about working towards a brand new **jQuery Modal 2.0**. See my [Proposal for jQuery Modal 2.0](https://github.com/kylefox/jquery-modal/issues/169) for more details & discussion._
-
-## How to contribute
-
-I welcome improvements to this plugin, particularly with:
-
-* Performance improvements
-* Making the code as concise/efficient as possible
-* Bug fixes & browser compatibility
-
-Please fork and send pull requests, or create an [issue](https://github.com/kylefox/jquery-modal/issues). Keep in mind the spirit of this plugin is **minimalism** so I'm very picky about adding _new_ features.
-
-## Tips for development/contributing
-
-* Make sure dependencies are installed: `npm install`
-* After modifying `jquery.modal.js` and/or `jquery.modal.css`, you can optionally regenerate the minified files with `gulp min` and `gulp css` respectively.
-* Make sure you have updated documentation (`README.md` and/or `examples/index.html`) if necessary. **Pull requests without documentation updates will be rejected.**
-* Maintainers should increment version numbers and run `gulp changelog` when cutting a new release.
-
 # Support
 
-Please post a question on [StackOverflow](http://stackoverflow.com/). Commercial support by email is also available — please contact kylefox@gmail.com for rates. Unfortunately I am unable to provide free email support.
+Unfortunately I am unable to provide free email support.
 
 # License (MIT)
 
-jQuery Modal is distributed under the [MIT License](Learn more at http://opensource.org/licenses/mit-license.php):
+jQuery DockedModal is distributed under the [MIT License](Learn more at http://opensource.org/licenses/mit-license.php):
 
     Copyright (c) 2012 Kyle Fox
 
