@@ -1,6 +1,7 @@
 /*
     A simple docked jQuery modal 
     Version 1.0.0
+    https://github.com/reinrl/jquery-dockedmodal
     (based on https://github.com/kylefox/jquery-modal)
 */
 
@@ -114,7 +115,9 @@
 
     block: function() {
       this.$elm.trigger($.dockedmodal.BEFORE_BLOCK, [this._ctx()]);
-      this.$body.css("overflow","hidden");
+      if (this.options.scrollToTop) {
+      	this.$body.css("overflow","hidden");
+      }
       this.$blocker = $("<div class=\"jquery-modal blocker current\"></div>").appendTo(this.$body);
       selectCurrent();
       if(this.options.doFade) {
@@ -131,7 +134,7 @@
         this.$blocker.remove();
         this.$blocker = null;
         selectCurrent();
-        if (!$.dockedmodal.isActive())
+        if (!$.dockedmodal.isActive() && this.options.scrollToTop)
           this.$body.css("overflow","");
       }
     },
@@ -155,6 +158,9 @@
         var linkOffset = $elOpener.offset();
         var rightPos = $(window).width() - linkOffset.left - $elOpener.outerWidth();
         var topPos = linkOffset.top + $elOpener.outerHeight();
+        if (!this.options.scrollToTop) {
+            topPos = topPos - $(window).scrollTop();
+        }
         // Horizontal position for tooltip
         this.$elm.css("right", rightPos);
         // Vertical position for tooltip
@@ -226,7 +232,8 @@
     showSpinner: true,
     showClose: false,
     fadeDuration: null,   // Number of milliseconds the fade animation takes.
-    fadeDelay: 1.0        // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    fadeDelay: 1.0,       // Point during the overlay's fade-in that the modal begins to fade in (.5 = 50%, 1.5 = 150%, etc.)
+    scrollToTop: false     // Keeps body overflow visible, body scrolling enabled, is set to true. Default is false.
   };
 
   // Event constants
